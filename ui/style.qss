@@ -1,0 +1,211 @@
+/* style.qss */
+
+/* --- GLOBAL SETTINGS --- */
+QWidget {
+    background-color: #121212; /* Очень темный фон */
+    color: #E0E0E0;            /* Светло-серый текст для мягкости */
+    font-family: "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    selection-background-color: #BB86FC;
+    selection-color: #000000;
+}
+
+/* --- MAIN WINDOW & PANELS --- */
+QMainWindow, QDialog {
+    background-color: #121212;
+}
+
+/* Разделители и рамки */
+QFrame, QSplitter::handle {
+    background-color: #2C2C2C;
+}
+
+/* --- BUTTONS --- */
+QPushButton {
+    background-color: #2C2C2C;
+    border: 1px solid #3E3E3E;
+    border-radius: 4px;
+    padding: 6px 12px;
+    color: #FFFFFF;
+}
+
+QPushButton:hover {
+    background-color: #383838;
+    border-color: #555555;
+}
+
+QPushButton:pressed {
+    background-color: #BB86FC; /* Акцентный фиолетовый при нажатии */
+    color: #000000;
+}
+
+QPushButton:disabled {
+    background-color: #1A1A1A;
+    color: #555555;
+    border-color: #2C2C2C;
+}
+
+/* Специальные кнопки (Login, Create - по умолчанию) */
+QPushButton[default="true"] {
+    background-color: #BB86FC;
+    color: #000000;
+    font-weight: bold;
+    border: none;
+}
+
+QPushButton[default="true"]:hover {
+    background-color: #9965f4;
+}
+
+/* --- INPUT FIELDS --- */
+QLineEdit, QTextEdit, QPlainTextEdit {
+    background-color: #1E1E1E;
+    border: 1px solid #333333;
+    border-radius: 4px;
+    padding: 6px;
+    color: #FFFFFF;
+    selection-background-color: #BB86FC;
+}
+
+QLineEdit:focus, QTextEdit:focus {
+    border: 1px solid #BB86FC;
+}
+
+/* --- LISTS & TREES (Sidebar, Content) --- */
+QTreeWidget, QListWidget {
+    background-color: #121212;
+    border: none;
+    outline: none; /* Убирает пунктирную рамку фокуса */
+}
+
+/* Элементы дерева (Меню слева) */
+QTreeWidget::item {
+    padding: 8px;
+    border-radius: 4px;
+    color: #B3B3B3;
+}
+
+QTreeWidget::item:hover {
+    background-color: #1F1F1F;
+    color: #FFFFFF;
+}
+
+QTreeWidget::item:selected {
+    background-color: #2C2C2C;
+    color: #BB86FC; /* Акцентный текст для выбранного меню */
+}
+
+/* Элементы списка песен */
+QListWidget::item {
+    padding: 4px;
+}
+
+QListWidget::item:selected {
+    background-color: #252525;
+    border-left: 2px solid #BB86FC; /* Индикатор слева */
+}
+
+QListWidget::item:hover {
+    background-color: #1F1F1F;
+}
+
+/* --- SLIDERS (Player) --- */
+QSlider::groove:horizontal {
+    border: 1px solid #333333;
+    height: 6px;
+    background: #2C2C2C;
+    margin: 2px 0;
+    border-radius: 3px;
+}
+
+QSlider::handle:horizontal {
+    background: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    width: 14px;
+    height: 14px;
+    margin: -5px 0;
+    border-radius: 7px;
+}
+
+QSlider::handle:horizontal:hover {
+    background: #BB86FC; /* Фиолетовый при наведении */
+    border-color: #BB86FC;
+}
+
+QSlider::sub-page:horizontal {
+    background: #BB86FC; /* Заполненная часть слайдера */
+    border-radius: 3px;
+}
+
+/* --- SCROLLBARS (Modern Webkit Style) --- */
+QScrollBar:vertical {
+    border: none;
+    background: #121212;
+    width: 10px;
+    margin: 0px 0px 0px 0px;
+}
+
+QScrollBar::handle:vertical {
+    background: #3E3E3E;
+    min-height: 20px;
+    border-radius: 5px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #555555;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar:horizontal {
+    border: none;
+    background: #121212;
+    height: 10px;
+}
+
+QScrollBar::handle:horizontal {
+    background: #3E3E3E;
+    min-width: 20px;
+    border-radius: 5px;
+}
+
+/* --- MENU --- */
+QMenu {
+    background-color: #1E1E1E;
+    border: 1px solid #333333;
+    padding: 5px;
+}
+
+QMenu::item {
+    padding: 6px 24px;
+    color: #E0E0E0;
+}
+
+QMenu::item:selected {
+    background-color: #BB86FC;
+    color: #000000;
+    border-radius: 2px;
+}
+
+QMenu::separator {
+    height: 1px;
+    background: #333333;
+    margin: 4px 8px;
+}
+
+/* --- SPECIFIC WIDGET TWEAKS --- */
+
+/* Правая панель плеера - чуть светлее фона для выделения */
+/* Поскольку в коде нет objectName для панели, мы полагаемся на иерархию или оставляем общим.
+   Если хотите выделить правую панель, добавьте self.right_panel.setObjectName("RightPanel") в Python */
+
+/* Заголовки (Название песни, лейблы) */
+QLabel {
+    color: #E0E0E0;
+}
+
+/* Кнопки плеера (⏮, ▶, ⏭) - делаем их крупнее и без фона */
+/* Примечание: Это применится ко всем кнопкам, если не задать конкретные стили.
+   В данном случае мы оставляем стандартный стиль кнопок, но делаем текст крупнее для символов unicode */
