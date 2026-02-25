@@ -1,0 +1,102 @@
+List of Valid and Invalid Email Addresses
+For my own and your reference when testing email regexes or other email validation processes, here a copy&paste list of test samples:
+Thanks goes out to Chan Chaiyochlarb who published a major part of this list on the msdn  blog, unfortunately it's in a table there so you can't just copy &  paste them. That's why I'm saving this here. If you want to know why  those emails are valid or invalid, check out his post.
+Stranger valid and invalid email addresses where copied directly from Wikipedia.
+List of Valid Email Addresses
+email@example.com
+firstname.lastname@example.com
+email@subdomain.example.com
+firstname+lastname@example.com
+email@123.123.123.123
+email@[123.123.123.123]
+"email"@example.com
+1234567890@example.com
+email@example-one.com
+_______@example.com
+email@example.name
+email@example.museum
+email@example.co.jp
+firstname-lastname@example.com
+List of Strange Valid Email Addresses
+much."more\ unusual"@example.com
+very.unusual."@".unusual.com@example.com
+very."(),:;<>[]".VERY."very@\\\ \"very".unusual@strange.example.com
+List of Invalid Email Addresses
+plainaddress
+#@%^%#$@#$@#.com
+@example.com
+Joe Smith <email@example.com>
+email.example.com
+email@example@example.com
+.email@example.com
+email.@example.com
+email..email@example.com
+あいうえお@example.com
+email@example.com (Joe Smith)
+email@example
+email@-example.com
+email@example.web
+email@111.222.333.44444
+email@example..com
+Abc..123@example.com
+List of Strange Invalid Email Addresses
+"(),:;<>[\]@example.com
+just"not"right@example.com
+this\ is\"really\"not\\allowed@example.com
+And there you have it.
+Finally for your pleasure here a php code snippet to test your regex against. Feel free to just copy the array where I have already put in the escaping backslashes and build your own tests around it.
+$emails = array(
+    'email@example.com',
+    'firstname.lastname@example.com',
+    'email@subdomain.example.com',
+    'firstname+lastname@example.com',
+    'email@123.123.123.123',
+    'email@[123.123.123.123]',
+    '"email"@example.com',
+    '1234567890@example.com',
+    'email@example-one.com',
+    '_______@example.com',
+    'email@example.name',
+    'email@example.museum',
+    'email@example.co.jp',
+    'firstname-lastname@example.com',
+
+    'much."more\ unusual"@example.com',
+    'very.unusual."@".unusual.com@example.com',
+    'very."(),:;<>[]".VERY."very@\\\\\\ \"very".unusual@strange.example.com',
+
+
+    'plainaddress',
+    '#@%^%#$@#$@#.com',
+    '@example.com',
+    'Joe Smith <email@example.com>',
+    'email.example.com',
+    'email@example@example.com',
+    '.email@example.com',
+    'email.@example.com',
+    'email..email@example.com',
+    'あいうえお@example.com',
+    'email@example.com (Joe Smith)',
+    'email@example',
+    'email@-example.com',
+    'email@example.web',
+    'email@111.222.333.44444',
+    'email@example..com',
+    'Abc..123@example.com',
+
+    '"(),:;<>[\]@example.com',
+    'just"not"right@example.com',
+    'this\ is\"really\"not\\\\allowed@example.com'
+);
+
+foreach ($emails as $email) {
+    if (preg_match("/YOURREGEX/", $email))
+        echo "<div style='color:green'>".$email." is valid.</div>";
+    else
+        echo "<div style='color:red'>".$email." is invalid.</div>";
+}
+PS: Yes, email addresses are a pain in the behind to validate. Wanna see the perfect regex for email addresses? Here it is.
+Wanna see the second best email regex? Here you go: /^.+@.+\\..+$/
+It basically says "There is an at-sign, a period, stuff before/after/between them, and no line breaks." Of course that's just my personal opinion.
+If someone wants to spam your form, they will do so regardless of your precious regex. president@whitehouse.gov - There you go. And really, how often have you mistyped your email address and a form validation helped you see it? I know I never have.
+But that list is good for other stuff as well. Right now I'm generating default usernames from the emails people put in. That's why I made that list to begin with. Anyway, I'm off!
